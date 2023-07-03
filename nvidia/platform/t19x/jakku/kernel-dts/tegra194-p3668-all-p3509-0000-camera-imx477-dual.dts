@@ -37,7 +37,7 @@
 			status = "okay";
 			pcl_id = "v4l2_sensor";
 			devname = "imx477 9-001a";
-			proc-device-tree = "/proc/device-tree/cam_i2cmux/i2c@0/rbpcv3_imx477_a@1a";
+			proc-device-tree = "/proc/device-tree/i2c@3180000/i2c@31/rbpcv3_imx477_a@1a";
 		};
 	};
 	fragment@3 {
@@ -61,7 +61,7 @@
 			status = "okay";
 			pcl_id = "v4l2_sensor";
 			devname = "imx477 10-001a";
-			proc-device-tree = "/proc/device-tree/cam_i2cmux/i2c@1/rbpcv3_imx477_c@1a";
+			proc-device-tree = "/proc/device-tree/i2c@3180000/i2c@32/rbpcv3_imx477_c@1a";
 		};
 	};
 	fragment@6 {
