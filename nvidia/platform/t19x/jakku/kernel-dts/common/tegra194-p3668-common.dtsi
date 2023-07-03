@@ -288,44 +288,66 @@
 	};
 
 	gpio@c2f0000 {
-		pex-refclk-sel-low {
-			gpio-hog;
-			output-low;
-			gpios = <TEGRA194_AON_GPIO(AA, 5) 0>;
-			label = "pex_refclk_sel_low";
-			status = "disabled";
-		};
-
-		pex-refclk-sel-high {
-			gpio-hog;
-			output-high;
-			gpios = <TEGRA194_AON_GPIO(AA, 5) 0>;
-			label = "pex_refclk_sel_high";
-			status = "disabled";
-		};
-		w-disable1 {
-			gpio-hog;
-			output-high;
-			gpios = <TEGRA194_AON_GPIO(CC, 2) GPIO_ACTIVE_LOW>;
-			label = "w-disable1";
-			status = "okay";
-		};
-		w-disable2 {
-			gpio-hog;
-			output-high;
-			gpios = <TEGRA194_AON_GPIO(CC, 0) GPIO_ACTIVE_LOW>;
-			label = "w-disable2";
-			status = "okay";
-		};
-		suspend_gpio: suspend-led-gpio {
-			gpio-hog;
-			output-high;
-			gpio-suspend;
-			suspend-output-low;
-			gpios = <TEGRA194_AON_GPIO(CC, 1) GPIO_ACTIVE_HIGH>;
-			label = "suspend-led-gpio";
-			status = "okay";
-		};
+		/* pex-refclk-sel-low { */
+		/* 	gpio-hog; */
+		/* 	output-low; */
+		/* 	gpios = <TEGRA194_AON_GPIO(AA, 5) 0>; */
+		/* 	label = "pex_refclk_sel_low"; */
+		/* 	status = "disabled"; */
+		/* }; */
+		/* pex-refclk-sel-high { */
+		/* 	gpio-hog; */
+		/* 	output-high; */
+		/* 	gpios = <TEGRA194_AON_GPIO(AA, 5) 0>; */
+		/* 	label = "pex_refclk_sel_high"; */
+		/* 	status = "disabled"; */
+		/* }; */
+		/* w-disable1 { */
+		/* 	gpio-hog; */
+		/* 	output-high; */
+		/* 	gpios = <TEGRA194_AON_GPIO(CC, 2) GPIO_ACTIVE_LOW>; */
+		/* 	label = "w-disable1"; */
+		/* 	status = "okay"; */
+		/* }; */
+		/* w-disable2 { */
+		/* 	gpio-hog; */
+		/* 	output-high; */
+		/* 	gpios = <TEGRA194_AON_GPIO(CC, 0) GPIO_ACTIVE_LOW>; */
+		/* 	label = "w-disable2"; */
+		/* 	status = "okay"; */
+		/* }; */
+		/* suspend_gpio: suspend-led-gpio { */
+		/* 	gpio-hog; */
+		/* 	output-high; */
+		/* 	gpio-suspend; */
+		/* 	suspend-output-low; */
+		/* 	gpios = <TEGRA194_AON_GPIO(CC, 1) GPIO_ACTIVE_HIGH>; */
+		/* 	label = "suspend-led-gpio"; */
+		/* 	status = "okay"; */
+		/* }; */
+		/* BEGIN Andium BSP added dwm3000 */
+ 		dwm3000_irq {
+ 			gpio-hog;
+ 			input;
+ 			gpios = <TEGRA194_AON_GPIO(CC, 1) GPIO_ACTIVE_HIGH>;
+ 			label = "dwm3000_irq";
+ 			status = "okay";
+ 		};
+ 		dwm3000_reset {
+ 			gpio-hog;
+ 			input;
+ 			gpios = <TEGRA194_AON_GPIO(CC, 2) GPIO_ACTIVE_LOW>;
+ 			label = "dwm3000_reset";
+ 			status = "okay";
+ 		};
+ 		dwm3000_wakeup {
+ 			gpio-hog;
+ 			output-low;
+ 			gpios = <TEGRA194_AON_GPIO(CC, 4) GPIO_ACTIVE_HIGH>;
+ 			label = "dwm3000_wakeup";
+ 			status = "okay";
+ 		};
+		/* END Andium BSP added dwm3000 */
 	};
 
 	pcie@14160000 {
@@ -414,6 +436,103 @@
 		status = "okay";
 	};
 
+	/* BEGIN Andium BSP pinmix */
+ 	pinmux@2430000 {
+ 		pinctrl-0 = <0x185>;
+ 		pinctrl-names = "default";
+
+ 		exp-header-pinmux {
+ 			phandle = <0x185>;
+ 			linux,phandle = <0x185>;
+ 			pin13 {
+ 				nvidia,pins = "spi3_sck_py0";
+ 				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,io-high-voltage = <TEGRA_PIN_DISABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi3";
+ 			};
+ 			pin16 {
+ 				nvidia,pins = "spi3_cs1_py4";
+ 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,io-high-voltage = <TEGRA_PIN_DISABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi3";
+ 			};
+ 			pin18 {
+ 				nvidia,pins = "spi3_cs0_py3";
+ 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,io-high-voltage = <TEGRA_PIN_DISABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi3";
+ 			};
+ 			pin19 {
+ 				nvidia,pins = "spi1_mosi_pz5";
+ 				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi1";
+ 			};
+ 			pin21 {
+ 				nvidia,pins = "spi1_miso_pz4";
+ 				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi1";
+ 			};
+ 			pin22 {
+ 				nvidia,pins = "spi3_miso_py1";
+ 				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,io-high-voltage = <TEGRA_PIN_DISABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi3";
+ 			};
+ 			pin23 {
+ 				nvidia,pins = "spi1_sck_pz3";
+ 				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi1";
+ 			};
+ 			pin24 {
+ 				nvidia,pins = "spi1_cs0_pz6";
+ 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi1";
+ 			};
+ 			pin26 {
+ 				nvidia,pins = "spi1_cs1_pz7";
+ 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi1";
+ 			};
+ 			pin37 {
+ 				nvidia,pins = "spi3_mosi_py2";
+ 				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 				nvidia,io-high-voltage = <TEGRA_PIN_DISABLE>;
+ 				nvidia,lpdr = <TEGRA_PIN_DISABLE>;
+ 				nvidia,function = "spi3";
+ 			};
+ 		};
+ 	};
+	/* END Andium BSP pinmix */
+
 	spi@3210000{ /* SPI1 in 40 pin conn */
 		status = "okay";
 		spi@0 { /* chip select 0 */
@@ -476,14 +595,14 @@
 		};
 	};
 
-	leds {
-		compatible = "gpio-leds";
-		status = "okay";
-		pwr {
-			gpios = <&tegra_aon_gpio TEGRA194_AON_GPIO(CC, 1) GPIO_ACTIVE_HIGH>;
-			default-state = "on";
-		};
-	};
+	/* leds { */
+	/* 	compatible = "gpio-leds"; */
+	/* 	status = "okay"; */
+	/* 	pwr { */
+	/* 		gpios = <&tegra_aon_gpio TEGRA194_AON_GPIO(CC, 1) GPIO_ACTIVE_HIGH>; */
+	/* 		default-state = "on"; */
+	/* 	}; */
+	/* }; */
 
 
 	/* QSPI flash S25FS128SAGNFI103 is controlled by qspi0 */
