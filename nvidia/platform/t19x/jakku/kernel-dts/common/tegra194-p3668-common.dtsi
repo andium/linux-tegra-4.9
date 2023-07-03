@@ -124,7 +124,7 @@
 
 		ports {
 			usb2-0 {
-				mode = "otg";
+				mode = "host";
 				status = "okay";
 			};
 			usb2-1 {
